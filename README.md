@@ -35,16 +35,15 @@ Les exercices sont gradués :
 | 9 | Entretien senior |
 | 10 | Problème ouvert expert |
 
-## Parcours (10 niveaux)
+## Parcours
 
 | # | Niveau | Contenu | État |
 |---|---|---|---|
-| 0 | Diagnostic | Évaluation initiale | 🔵 en cours |
-| 1 | Fondations du design | Clean code, responsabilités, abstractions, couplage/cohésion | ⚪ |
+| 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, testabilité | 🔵 en cours |
 | 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ⚪ |
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ⚪ |
-| 4 | Données & backend | BDD, transactions, concurrence, caching | ⚪ |
-| 5 | API & frontières | API design, contrats, versioning, frontend architecture | ⚪ |
+| 4 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ |
+| 5 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ |
 | 6 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ |
 | 7 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ |
 | 8 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ |
@@ -53,11 +52,21 @@ Les exercices sont gradués :
 
 Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architecture.
 
+## Niveau 1 — Fondations du design
+
+| Leçon | Sujet | État |
+|---|---|---|
+| 1.1 | Effet de bord et propriété des données | 🔵 |
+| 1.2 | Responsabilités : une seule raison de changer | ⚪ |
+| 1.3 | Couplage et cohésion | ⚪ |
+| 1.4 | Abstraction : quoi cacher, quoi exposer | ⚪ |
+| 1.5 | Erreurs et contrats | ⚪ |
+| 1.6 | La testabilité comme révélateur de conception | ⚪ |
+
 ## Organisation du dépôt
 
 ```
-00-diagnostic/       Évaluation initiale et correction
-NN-<niveau>/         Un dossier par niveau
+NN-<niveau>/
   cours/             Leçons
   exercices/         Énoncés
   mes-reponses/      Tes réponses (tu écris ici)
@@ -68,6 +77,6 @@ evaluations/         Examens et notes de niveau
 
 ## Journal de progression
 
-| Date | Étape | Note / niveau |
+| Date | Étape | Niveau |
 |---|---|---|
-| 2026-08-19 | Diagnostic initial envoyé | — |
+| 2026-08-19 | Démarrage — leçon 1.1 | Junior |
