@@ -1,2 +1,20 @@
+# ─────────────────────────────────────────────────────────────
+# Ce dépôt est un support de cours public.
+# Tout ce qui relève de la progression PERSONNELLE d'un lecteur
+# reste local et n'est jamais versionné.
+# ─────────────────────────────────────────────────────────────
+
+# Réponses aux exercices (à n'importe quelle profondeur)
+mes-reponses/
+**/mes-reponses/
+
+# Diagnostic de niveau, examens, notes, journal personnel
 00-diagnostic/
-*/mes-reponses/
+evaluations/
+**/evaluations/
+PROGRESSION.md
+
+# Bacs à sable
+scratch/
+tmp/
+*.local.md
