@@ -71,7 +71,7 @@ Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architectu
 
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
-| 1.1 | [Effet de bord et propriété des données](01-fondations/cours/1.1-effet-de-bord.md) | ✅ | [5 exercices](01-fondations/exercices/1.1-exercices.md) | 1/5 |
+| 1.1 | [Effet de bord et propriété des données](01-fondations/cours/1.1-effet-de-bord.md) | ✅ | [5 exercices](01-fondations/exercices/1.1-exercices.md) | [2/5](01-fondations/corrections/) |
 | 1.2 | Responsabilités : une seule raison de changer | ⚪ | ⚪ | ⚪ |
 | 1.3 | Couplage et cohésion | ⚪ | ⚪ | ⚪ |
 | 1.4 | Abstraction : quoi cacher, quoi exposer | ⚪ | ⚪ | ⚪ |
