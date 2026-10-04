@@ -54,7 +54,7 @@ Les exercices sont gradués :
 
 | # | Niveau | Contenu | Contenu publié |
 |---|---|---|---|
-| 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, erreurs, testabilité | 🟡 partiel |
+| 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, erreurs, testabilité | ✅ **complet** |
 | 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ⚪ à venir |
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ⚪ à venir |
 | 4 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
@@ -76,7 +76,7 @@ Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architectu
 | 1.3 | [Couplage et cohésion](01-fondations/cours/1.3-couplage-cohesion.md) | ✅ | [5 exercices](01-fondations/exercices/1.3-exercices.md) | [5/5](01-fondations/corrections/) |
 | 1.4 | [Abstraction : quoi cacher, quoi exposer](01-fondations/cours/1.4-abstraction.md) | ✅ | [5 exercices](01-fondations/exercices/1.4-exercices.md) | [5/5](01-fondations/corrections/) |
 | 1.5 | [Erreurs et contrats](01-fondations/cours/1.5-erreurs-contrats.md) | ✅ | [5 exercices](01-fondations/exercices/1.5-exercices.md) | [5/5](01-fondations/corrections/) |
-| 1.6 | [La testabilité comme révélateur de conception](01-fondations/cours/1.6-testabilite.md) | ✅ | [5 exercices](01-fondations/exercices/1.6-exercices.md) | ⚪ |
+| 1.6 | [La testabilité comme révélateur de conception](01-fondations/cours/1.6-testabilite.md) | ✅ | [5 exercices](01-fondations/exercices/1.6-exercices.md) | [5/5](01-fondations/corrections/) |
 
 ## Organisation du dépôt
 
