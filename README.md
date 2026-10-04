@@ -75,7 +75,7 @@ Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architectu
 | 1.2 | [Responsabilités : une seule raison de changer](01-fondations/cours/1.2-responsabilites.md) | ✅ | [5 exercices](01-fondations/exercices/1.2-exercices.md) | [5/5](01-fondations/corrections/) |
 | 1.3 | [Couplage et cohésion](01-fondations/cours/1.3-couplage-cohesion.md) | ✅ | [5 exercices](01-fondations/exercices/1.3-exercices.md) | [5/5](01-fondations/corrections/) |
 | 1.4 | [Abstraction : quoi cacher, quoi exposer](01-fondations/cours/1.4-abstraction.md) | ✅ | [5 exercices](01-fondations/exercices/1.4-exercices.md) | [5/5](01-fondations/corrections/) |
-| 1.5 | Erreurs et contrats | ⚪ | ⚪ | ⚪ |
+| 1.5 | [Erreurs et contrats](01-fondations/cours/1.5-erreurs-contrats.md) | ✅ | [5 exercices](01-fondations/exercices/1.5-exercices.md) | ⚪ |
 | 1.6 | La testabilité comme révélateur de conception | ⚪ | ⚪ | ⚪ |
 
 ## Organisation du dépôt
