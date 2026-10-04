@@ -55,7 +55,7 @@ Les exercices sont gradués :
 | # | Niveau | Contenu | Contenu publié |
 |---|---|---|---|
 | 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, erreurs, testabilité | ✅ **complet** |
-| 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ⚪ à venir |
+| 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | 🟡 partiel |
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ⚪ à venir |
 | 4 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
 | 5 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
@@ -77,6 +77,20 @@ Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architectu
 | 1.4 | [Abstraction : quoi cacher, quoi exposer](01-fondations/cours/1.4-abstraction.md) | ✅ | [5 exercices](01-fondations/exercices/1.4-exercices.md) | [5/5](01-fondations/corrections/) |
 | 1.5 | [Erreurs et contrats](01-fondations/cours/1.5-erreurs-contrats.md) | ✅ | [5 exercices](01-fondations/exercices/1.5-exercices.md) | [5/5](01-fondations/corrections/) |
 | 1.6 | [La testabilité comme révélateur de conception](01-fondations/cours/1.6-testabilite.md) | ✅ | [5 exercices](01-fondations/exercices/1.6-exercices.md) | [5/5](01-fondations/corrections/) |
+
+## Niveau 2 — OOP & SOLID
+
+Go n'a ni classes ni héritage. C'est un avantage pour ce niveau : on y apprend
+à quoi les principes servent, et non la syntaxe qui les imite.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 2.1 | [Modéliser : ce qui a une identité, ce qui n'en a pas](02-oop-solid/cours/2.1-modeliser.md) | ✅ | [5 exercices](02-oop-solid/exercices/2.1-exercices.md) | ⚪ |
+| 2.2 | Polymorphisme : à quoi il sert vraiment | ⚪ | ⚪ | ⚪ |
+| 2.3 | Composition contre héritage, et pourquoi Go a tranché | ⚪ | ⚪ | ⚪ |
+| 2.4 | SOLID : SRP, OCP, LSP | ⚪ | ⚪ | ⚪ |
+| 2.5 | SOLID : ISP, DIP | ⚪ | ⚪ | ⚪ |
+| 2.6 | Les limites : quand ces principes coûtent plus qu'ils ne rapportent | ⚪ | ⚪ | ⚪ |
 
 ## Organisation du dépôt
 
