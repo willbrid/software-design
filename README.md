@@ -55,7 +55,7 @@ Les exercices sont gradués :
 | # | Niveau | Contenu | Contenu publié |
 |---|---|---|---|
 | 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, erreurs, testabilité | ✅ **complet** |
-| 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | 🟡 partiel |
+| 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ✅ **complet** |
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ⚪ à venir |
 | 4 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
 | 5 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
