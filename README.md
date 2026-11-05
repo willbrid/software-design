@@ -90,7 +90,7 @@ Go n'a ni classes ni héritage. C'est un avantage pour ce niveau : on y apprend
 | 2.3 | [Composition contre héritage, et pourquoi Go a tranché](02-oop-solid/cours/2.3-composition.md) | ✅ | [5 exercices](02-oop-solid/exercices/2.3-exercices.md) | [5/5](02-oop-solid/corrections/) |
 | 2.4 | [SOLID : SRP, OCP, LSP](02-oop-solid/cours/2.4-solid-srp-ocp-lsp.md) | ✅ | [5 exercices](02-oop-solid/exercices/2.4-exercices.md) | [5/5](02-oop-solid/corrections/) |
 | 2.5 | [SOLID : ISP, DIP](02-oop-solid/cours/2.5-solid-isp-dip.md) | ✅ | [5 exercices](02-oop-solid/exercices/2.5-exercices.md) | [5/5](02-oop-solid/corrections/) |
-| 2.6 | Les limites : quand ces principes coûtent plus qu'ils ne rapportent | ⚪ | ⚪ | ⚪ |
+| 2.6 | [Les limites : quand ces principes coûtent plus qu'ils ne rapportent](02-oop-solid/cours/2.6-limites.md) | ✅ | ⚪ | ⚪ |
 
 ## Organisation du dépôt
 
