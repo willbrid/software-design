@@ -100,7 +100,7 @@ coûte le jour où la contrainte change. Le nom du pattern arrive à la fin.
 
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
-| 3.1 | [Faire varier une règle : la stratégie, et quand une fonction suffit](03-design-patterns/cours/3.1-strategie.md) | ✅ | à venir | — |
+| 3.1 | [Faire varier une règle : la stratégie, et quand une fonction suffit](03-design-patterns/cours/3.1-strategie.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.1-exercices.md) | à venir |
 | 3.2 | Construire un objet valide : constructeurs, options, builder, fabrique | ⚪ | — | — |
 | 3.3 | Ajouter un comportement autour d'un autre : décorateur, middleware, adaptateur, proxy | ⚪ | — | — |
 | 3.4 | Prévenir sans coupler : observateur, bus en mémoire, et la concurrence | ⚪ | — | — |
