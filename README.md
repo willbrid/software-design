@@ -56,7 +56,7 @@ Les exercices sont gradués :
 |---|---|---|---|
 | 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, erreurs, testabilité | ✅ **complet** |
 | 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ✅ **complet** |
-| 3 | Design patterns | Le problème d'abord, le pattern ensuite | ⚪ à venir |
+| 3 | Design patterns | Le problème d'abord, le pattern ensuite | 🟡 en cours |
 | 4 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
 | 5 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
 | 6 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
@@ -91,6 +91,21 @@ Go n'a ni classes ni héritage. C'est un avantage pour ce niveau : on y apprend
 | 2.4 | [SOLID : SRP, OCP, LSP](02-oop-solid/cours/2.4-solid-srp-ocp-lsp.md) | ✅ | [5 exercices](02-oop-solid/exercices/2.4-exercices.md) | [5/5](02-oop-solid/corrections/) |
 | 2.5 | [SOLID : ISP, DIP](02-oop-solid/cours/2.5-solid-isp-dip.md) | ✅ | [5 exercices](02-oop-solid/exercices/2.5-exercices.md) | [5/5](02-oop-solid/corrections/) |
 | 2.6 | [Les limites : quand ces principes coûtent plus qu'ils ne rapportent](02-oop-solid/cours/2.6-limites.md) | ✅ | [5 exercices](02-oop-solid/exercices/2.6-exercices.md) | [5/5](02-oop-solid/corrections/) |
+
+## Niveau 3 — Design patterns
+
+Le problème d'abord, le pattern ensuite. Chaque leçon part d'une contrainte
+qui revient, écrit les façons de la résoudre en Go, et mesure ce que chacune
+coûte le jour où la contrainte change. Le nom du pattern arrive à la fin.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 3.1 | [Faire varier une règle : la stratégie, et quand une fonction suffit](03-design-patterns/cours/3.1-strategie.md) | ✅ | à venir | — |
+| 3.2 | Construire un objet valide : constructeurs, options, builder, fabrique | ⚪ | — | — |
+| 3.3 | Ajouter un comportement autour d'un autre : décorateur, middleware, adaptateur, proxy | ⚪ | — | — |
+| 3.4 | Prévenir sans coupler : observateur, bus en mémoire, et la concurrence | ⚪ | — | — |
+| 3.5 | Représenter des états et des étapes : machine à états, commande, pipeline | ⚪ | — | — |
+| 3.6 | Les patterns qui coûtent : singleton, service locator, fabrique abstraite | ⚪ | — | — |
 
 ## Organisation du dépôt
 
