@@ -57,13 +57,14 @@ Les exercices sont gradués :
 | 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, erreurs, testabilité | ✅ **complet** |
 | 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ✅ **complet** |
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | 🟡 en cours |
-| 4 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
-| 5 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
-| 6 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
-| 7 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
-| 8 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
-| 9 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
-| 10 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
+| 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ⚪ à venir |
+| 5 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
+| 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
+| 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
+| 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
+| 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
+| 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
+| 11 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
 
 Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architecture.
 
@@ -106,6 +107,23 @@ coûte le jour où la contrainte change. Le nom du pattern arrive à la fin.
 | 3.4 | Prévenir sans coupler : observateur, bus en mémoire, et la concurrence | ⚪ | — | — |
 | 3.5 | Représenter des états et des étapes : machine à états, commande, pipeline | ⚪ | — | — |
 | 3.6 | Les patterns qui coûtent : singleton, service locator, fabrique abstraite | ⚪ | — | — |
+
+## Niveau 4 — Analyser avant de concevoir
+
+Concevoir, c'est répondre à un problème : encore faut-il l'avoir compris.
+Ce niveau apprend à dire **ce que le système doit faire**, **à quel point il
+doit bien le faire**, et **à le montrer** à d'autres — avec juste assez de
+notation. On n'y apprend pas UML en entier : seulement les quelques
+diagrammes qui servent, écrits en texte dans le dépôt.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 4.1 | Comprendre le problème : cas d'utilisation, récits utilisateur, critères d'acceptation | ⚪ | — | — |
+| 4.2 | Les exigences de qualité : des scénarios qu'on peut mesurer | ⚪ | — | — |
+| 4.3 | Modéliser le domaine sans code : le modèle conceptuel | ⚪ | — | — |
+| 4.4 | Les diagrammes qui servent : séquence, états, activité | ⚪ | — | — |
+| 4.5 | Décrire une architecture : le modèle C4 et les ADR | ⚪ | — | — |
+| 4.6 | Combien d'analyse ? Du script au système critique, et quand le DDD vaut son prix | ⚪ | — | — |
 
 ## Organisation du dépôt
 
