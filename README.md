@@ -105,7 +105,7 @@ coûte le jour où la contrainte change. Le nom du pattern arrive à la fin.
 | 3.2 | [Construire un objet valide : constructeurs, options, builder, fabrique](03-design-patterns/cours/3.2-construire.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.2-exercices.md) | [5/5](03-design-patterns/corrections/) |
 | 3.3 | [Ajouter un comportement autour d'un autre : décorateur, middleware, adaptateur, proxy](03-design-patterns/cours/3.3-decorer.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.3-exercices.md) | [5/5](03-design-patterns/corrections/) |
 | 3.4 | [Prévenir sans coupler : observateur, bus en mémoire, et la concurrence](03-design-patterns/cours/3.4-prevenir.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.4-exercices.md) | [5/5](03-design-patterns/corrections/) |
-| 3.5 | Représenter des états et des étapes : machine à états, commande, pipeline | ⚪ | — | — |
+| 3.5 | [Représenter des états et des étapes : machine à états, commande, pipeline](03-design-patterns/cours/3.5-etats-etapes.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.5-exercices.md) | [5/5](03-design-patterns/corrections/) |
 | 3.6 | Les patterns qui coûtent : singleton, service locator, fabrique abstraite | ⚪ | — | — |
 
 ## Niveau 4 — Analyser avant de concevoir
