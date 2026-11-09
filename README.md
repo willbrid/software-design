@@ -56,8 +56,8 @@ Les exercices sont gradués :
 |---|---|---|---|
 | 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, erreurs, testabilité | ✅ **complet** |
 | 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ✅ **complet** |
-| 3 | Design patterns | Le problème d'abord, le pattern ensuite | 🟡 en cours |
-| 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ⚪ à venir |
+| 3 | Design patterns | Le problème d'abord, le pattern ensuite | ✅ **complet** |
+| 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | 🟡 en cours |
 | 5 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
@@ -106,7 +106,7 @@ coûte le jour où la contrainte change. Le nom du pattern arrive à la fin.
 | 3.3 | [Ajouter un comportement autour d'un autre : décorateur, middleware, adaptateur, proxy](03-design-patterns/cours/3.3-decorer.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.3-exercices.md) | [5/5](03-design-patterns/corrections/) |
 | 3.4 | [Prévenir sans coupler : observateur, bus en mémoire, et la concurrence](03-design-patterns/cours/3.4-prevenir.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.4-exercices.md) | [5/5](03-design-patterns/corrections/) |
 | 3.5 | [Représenter des états et des étapes : machine à états, commande, pipeline](03-design-patterns/cours/3.5-etats-etapes.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.5-exercices.md) | [5/5](03-design-patterns/corrections/) |
-| 3.6 | Les patterns qui coûtent : singleton, service locator, fabrique abstraite | ⚪ | — | — |
+| 3.6 | [Les patterns qui coûtent : singleton, service locator, fabrique abstraite](03-design-patterns/cours/3.6-patterns-qui-coutent.md) | ✅ | [5 exercices](03-design-patterns/exercices/3.6-exercices.md) | [5/5](03-design-patterns/corrections/) |
 
 ## Niveau 4 — Analyser avant de concevoir
 
