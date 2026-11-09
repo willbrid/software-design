@@ -57,7 +57,7 @@ Les exercices sont gradués :
 | 1 | Fondations du design | Effets de bord, responsabilités, couplage/cohésion, abstraction, erreurs, testabilité | ✅ **complet** |
 | 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ✅ **complet** |
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ✅ **complet** |
-| 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | 🟡 en cours |
+| 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ✅ **complet** |
 | 5 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
@@ -123,7 +123,7 @@ diagrammes qui servent, écrits en texte dans le dépôt.
 | 4.3 | [Modéliser le domaine sans code : le modèle conceptuel](04-analyse/cours/4.3-modele-conceptuel.md) | ✅ | [5 exercices](04-analyse/exercices/4.3-exercices.md) | [5/5](04-analyse/corrections/) |
 | 4.4 | [Les diagrammes qui servent : séquence, états, activité](04-analyse/cours/4.4-diagrammes.md) | ✅ | [5 exercices](04-analyse/exercices/4.4-exercices.md) | [5/5](04-analyse/corrections/) |
 | 4.5 | [Décrire une architecture : le modèle C4 et les ADR](04-analyse/cours/4.5-c4-adr.md) | ✅ | [5 exercices](04-analyse/exercices/4.5-exercices.md) | [5/5](04-analyse/corrections/) |
-| 4.6 | Combien d'analyse ? Du script au système critique, et quand le DDD vaut son prix | ⚪ | — | — |
+| 4.6 | [Combien d'analyse ? Du script au système critique, et quand le DDD vaut son prix](04-analyse/cours/4.6-combien-d-analyse.md) | ✅ | [5 exercices](04-analyse/exercices/4.6-exercices.md) | [5/5](04-analyse/corrections/) |
 
 ## Organisation du dépôt
 
