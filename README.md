@@ -119,7 +119,7 @@ diagrammes qui servent, écrits en texte dans le dépôt.
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
 | 4.1 | [Comprendre le problème : cas d'utilisation, récits utilisateur, critères d'acceptation](04-analyse/cours/4.1-comprendre-le-probleme.md) | ✅ | [5 exercices](04-analyse/exercices/4.1-exercices.md) | [5/5](04-analyse/corrections/) |
-| 4.2 | Les exigences de qualité : des scénarios qu'on peut mesurer | ⚪ | — | — |
+| 4.2 | [Les exigences de qualité : des scénarios qu'on peut mesurer](04-analyse/cours/4.2-exigences-de-qualite.md) | ✅ | [5 exercices](04-analyse/exercices/4.2-exercices.md) | [5/5](04-analyse/corrections/) |
 | 4.3 | Modéliser le domaine sans code : le modèle conceptuel | ⚪ | — | — |
 | 4.4 | Les diagrammes qui servent : séquence, états, activité | ⚪ | — | — |
 | 4.5 | Décrire une architecture : le modèle C4 et les ADR | ⚪ | — | — |
