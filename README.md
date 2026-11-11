@@ -58,7 +58,7 @@ Les exercices sont gradués :
 | 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ✅ **complet** |
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ✅ **complet** |
 | 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ✅ **complet** |
-| 5 | Données & backend | Modélisation, transactions, concurrence, caching | ⚪ à venir |
+| 5 | Données & backend | Modélisation, transactions, concurrence, caching | 🟡 en cours (1/6) |
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
@@ -124,6 +124,24 @@ diagrammes qui servent, écrits en texte dans le dépôt.
 | 4.4 | [Les diagrammes qui servent : séquence, états, activité](04-analyse/cours/4.4-diagrammes.md) | ✅ | [5 exercices](04-analyse/exercices/4.4-exercices.md) | [5/5](04-analyse/corrections/) |
 | 4.5 | [Décrire une architecture : le modèle C4 et les ADR](04-analyse/cours/4.5-c4-adr.md) | ✅ | [5 exercices](04-analyse/exercices/4.5-exercices.md) | [5/5](04-analyse/corrections/) |
 | 4.6 | [Combien d'analyse ? Du script au système critique, et quand le DDD vaut son prix](04-analyse/cours/4.6-combien-d-analyse.md) | ✅ | [5 exercices](04-analyse/exercices/4.6-exercices.md) | [5/5](04-analyse/corrections/) |
+
+## Niveau 5 — Données & backend
+
+Les règles trouvées au niveau 4 doivent tenir quand le système tourne :
+quand un script écrit dans la base sans passer par l'application, quand
+deux requêtes arrivent au même instant, quand le schéma doit changer sans
+arrêter le service. Ce niveau se pratique sur un vrai PostgreSQL 17,
+lancé par exemple avec
+`docker run -d --name sd-pg -p 55432:5432 -e POSTGRES_PASSWORD=dev postgres:17`.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 5.1 | [Du modèle au schéma : la base de données comme dernier garde-fou](05-donnees-backend/cours/5.1-du-modele-au-schema.md) | ✅ | [5 exercices](05-donnees-backend/exercices/5.1-exercices.md) | [5/5](05-donnees-backend/corrections/) |
+| 5.2 | Les transactions : tout ou rien, et ce que « rien » veut dire | ⚪ | | |
+| 5.3 | La concurrence : mises à jour perdues, isolation, verrous | ⚪ | | |
+| 5.4 | Faire évoluer un schéma sans coupure : les migrations | ⚪ | | |
+| 5.5 | Lire vite : requêtes, index, et le N+1 | ⚪ | | |
+| 5.6 | Le cache : ce qu'il coûte, et quand il ment | ⚪ | | |
 
 ## Organisation du dépôt
 
