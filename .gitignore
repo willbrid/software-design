@@ -18,3 +18,8 @@ PROGRESSION.md
 scratch/
 tmp/
 *.local.md
+
+# Fichiers intermédiaires de construction des leçons
+*.md.t
+*.md.i
+*.md.gol
