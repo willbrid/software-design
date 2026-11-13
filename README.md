@@ -177,6 +177,7 @@ peuvent un jour devenir des services. Chaque architecture y est mesurée
 | 7.1 | [Le modèle dans le code : des agrégats qui gardent leurs règles](07-ddd-architectures/cours/7.1-les-agregats.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.1-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 | 7.2 | [Le langage et les contextes délimités : un mot, un sens, une frontière](07-ddd-architectures/cours/7.2-les-contextes.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.2-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 | 7.3 | [L'architecture hexagonale : des ports, des adaptateurs, et des faux fidèles](07-ddd-architectures/cours/7.3-l-hexagone.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.3-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
+| 7.4 | [Clean Architecture et les couches : ce qu'elles protègent, ce qu'elles coûtent](07-ddd-architectures/cours/7.4-le-cout-des-couches.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.4-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 
 ## Organisation du dépôt
 
