@@ -1,0 +1,55 @@
+# Correction 6.6 — Exercice 3 : ne pas écraser l'autre après un `412`
+
+> Rappel de l'énoncé : fusionner la version lue, la sienne et celle du
+> serveur ; signaler les champs changés des deux côtés.
+
+La solution est dans `ex3` du module de correction, verte sous
+`go vet ./...` et `go test -race -count=1 ./...`.
+
+## En bref
+
+- **Une fusion à trois versions** : un champ inchangé d'un côté prend la
+  valeur de l'autre.
+- **Un champ changé des deux côtés vers deux valeurs différentes** est un
+  conflit : la fusion garde la valeur du serveur, et le nomme.
+- **L'écran montre le conflit** ; il ne le tranche pas.
+
+## 1. La solution
+
+```go
+@@P:en/c66/ex3/merge.go|func Merge@@
+```
+
+```text
+--- PASS: TestMerge (0.00s)
+ok      example/screen66/ex3    1.021s
+```
+
+La comparaison se fait **avec la base** : sans elle, on ne sait pas qui a
+changé quoi. C'est pourquoi l'écran garde la version lue, et pas
+seulement l'`ETag`.
+
+`reflect.DeepEqual` compare aussi les listes ; il traite une liste vide
+et `nil` comme différentes, ce qui ne gêne pas ici puisque les trois
+versions viennent du même décodage JSON.
+
+## 2. Ce que montre l'écran
+
+Pour chaque champ en conflit, l'écran affiche les deux valeurs :
+
+> La part a été changée par Bintou pendant que vous modifiiez le
+> règlement.
+> Votre valeur : 12 500 FCFA. Valeur de Bintou : 15 000 FCFA.
+> [Garder 15 000] [Remplacer par 12 500]
+
+Le nom de l'autre trésorière vient d'un champ « modifié par » que l'API
+expose avec le règlement. Les champs sans conflit sont déjà fusionnés :
+la trésorière ne retape rien. L'enregistrement final part avec l'`ETag`
+de `theirs`, et peut lui-même recevoir un `412` si une troisième
+personne est passée entre-temps.
+
+## Ce qu'il faut retenir
+
+- On fusionne avec la version lue : sans base, pas de fusion.
+- Un conflit se montre, avec les deux valeurs et l'auteur.
+- La fusion ne remplace pas `If-Match` : elle sert après lui.
