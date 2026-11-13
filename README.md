@@ -159,6 +159,7 @@ PostgreSQL 17 que le niveau 5 pour l'idempotence.
 | 6.2 | [Valider à la frontière : décoder strictement, puis transformer en types sûrs](06-api-frontieres/cours/6.2-valider-a-la-frontiere.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.2-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 | 6.3 | [L'idempotence : quand le client renvoie la requête](06-api-frontieres/cours/6.3-idempotence.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.3-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 | 6.4 | [Les contrats : ce qu'une API promet, et comment le tester](06-api-frontieres/cours/6.4-les-contrats.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.4-exercices.md) | [5/5](06-api-frontieres/corrections/) |
+| 6.5 | [Versionner une API : rompre sans casser, et savoir quand arrêter](06-api-frontieres/cours/6.5-versionner.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.5-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 
 ## Organisation du dépôt
 
