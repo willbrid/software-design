@@ -1,0 +1,366 @@
+# Leçon 6.3 — L'idempotence : quand le client renvoie la requête
+
+## L'essentiel en deux minutes
+
+**Le problème, en une phrase.** Sur un réseau mobile, une réponse se
+perd souvent **après** que le serveur a fait le travail. Le téléphone ne
+sait pas si le versement est parti ; il renvoie la requête, et le membre
+est payé deux fois.
+
+**Trois images.**
+
+- **Le bordereau numéroté** : à la banque, chaque bordereau a un numéro.
+  Si tu le redonnes au guichet parce que tu n'es pas sûr qu'il est passé,
+  le guichetier voit le numéro, retrouve l'opération, et te rend le même
+  reçu au lieu de verser une deuxième fois.
+- **Le reçu photocopié** : la deuxième fois, on ne refait pas
+  l'opération, on rend **la même réponse**. Le client ne voit pas la
+  différence entre « c'est fait » et « c'était déjà fait ».
+- **Le numéro redonné pour autre chose** : présenter le numéro d'un
+  bordereau de 50 000 FCFA avec un montant de 75 000, c'est une erreur.
+  Le guichetier refuse.
+
+**Le code, en quelques lignes.** Le serveur **prend la clé** avant de
+payer, dans la même transaction que le paiement. Si la clé est déjà
+prise, il rend la réponse gardée :
+
+```go
+            tag, err := tx.Exec(ctx, `INSERT INTO idempotency_key (key, request_hash) VALUES ($1, $2)
+                ON CONFLICT (key) DO NOTHING`, key, hash[:])
+```
+
+**Les règles à retenir.**
+
+1. **Un `POST` qui paie doit pouvoir être renvoyé sans effet de plus** :
+   le client renverra, parce qu'il ne sait pas.
+2. **La clé vient du client**, une par **action** (pas une par essai), et
+   voyage dans l'en-tête `Idempotency-Key`.
+3. **Le serveur prend la clé et fait le travail dans la même
+   transaction** : la contrainte d'unicité de la base départage deux
+   requêtes simultanées.
+4. **Il garde la réponse avec la clé**, et la rend à l'identique ; une
+   clé redonnée avec un autre corps reçoit `422`.
+5. **« Vérifier, puis faire » ne suffit pas** : entre les deux, une autre
+   requête passe.
+
+La suite le mesure avec 1 000 versements sur un réseau qui perd une
+réponse sur cinq.
+
+---
+
+La leçon 6.1 renvoyait les requêtes sans crainte, parce que le stockage
+échouait **avant** d'écrire. La leçon 5.2 rendait idempotent l'envoi
+vers l'opérateur avec une table d'ordres (*outbox*). Reste le premier
+maillon : la requête du téléphone vers l'API. Le problème de cette
+leçon :
+
+> **Comment le serveur reconnaît-il une requête qu'il a déjà traitée,
+> quand le client ne sait pas si elle est arrivée ?**
+
+Le module de la leçon est `l63`, sur le même PostgreSQL 17 que le
+niveau 5. Tout ce qui suit est mesuré sur un module vert sous
+`gofmt -l`, `go vet ./...` et `go test -race -count=1 ./...`.
+
+## 1. Pourquoi le client renvoie
+
+Quand un téléphone envoie `POST /payouts`, trois choses peuvent arriver :
+
+| Ce qui s'est passé | Ce que voit le téléphone |
+|---|---|
+| la requête n'est jamais arrivée | une erreur réseau |
+| la requête est arrivée, le serveur a payé, la réponse s'est perdue | **la même erreur réseau** |
+| tout s'est bien passé | `201` |
+
+Les deux premières lignes sont indiscernables. Le téléphone a deux
+choix : ne pas renvoyer, et risquer qu'un versement manque ; ou
+renvoyer, et risquer qu'il parte deux fois. La seule façon d'en sortir :
+que renvoyer soit **sans danger**. C'est la définition d'une méthode
+idempotente dans la RFC 9110 : plusieurs requêtes identiques ont le même
+effet qu'une seule. `PUT` et `DELETE` le sont par définition ; `POST` ne
+l'est pas, et il faut le rendre tel.
+
+## 2. Trois serveurs
+
+Le paquet `payout` verse la cagnotte d'un tour à son bénéficiaire. Le
+schéma garde une ligne par clé, avec l'empreinte de la requête et la
+réponse donnée :
+
+@@P:en/l63/payout/payout.go|// Schema is@@
+
+Trois serveurs :
+
+- **`EachRequest`** paie à chaque requête reçue ;
+- **`CheckThenPay`** cherche la clé, paie si elle n'y est pas, puis
+  l'enregistre, dans une transaction ;
+- **`Keyed`**, le serveur de la leçon :
+
+@@P:en/l63/payout/payout.go|// Keyed is the server@@
+
+L'ordre compte. `Keyed` **prend** la clé d'abord (`INSERT ... ON
+CONFLICT DO NOTHING`), puis paie, puis range la réponse, dans une seule
+transaction :
+
+- si une autre transaction a déjà pris la clé et n'a pas fini,
+  l'`INSERT` **attend** qu'elle se termine. PostgreSQL fait attendre une
+  insertion qui heurte une clé unique non encore validée ;
+- si elle a validé, `RowsAffected` vaut 0 : on relit la réponse rangée ;
+- si elle a échoué, la clé est libre, et l'`INSERT` réussit : c'est
+  cette requête qui paie.
+
+## 3. Le client : une clé par action
+
+@@P:en/l63/client/client.go|// Post sends body@@
+
+La clé est tirée **une fois, avant la boucle** : chaque nouvel essai
+porte la même. C'est ce qui permet au serveur de reconnaître un renvoi.
+
+## 4. Mesure : un réseau qui perd une réponse sur cinq
+
+Le paquet `lossy` se place devant le serveur. Il laisse le serveur
+faire tout son travail, puis coupe la connexion au lieu d'envoyer la
+réponse, une fois sur cinq. `cmd/lost` envoie 1 000 versements de
+50 000 FCFA, à 1 000 membres différents, avec un client qui essaie
+jusqu'à six fois :
+
+```text
+each request, no key         payouts 1273  paid more than once 208 ( 13650000 FCFA)  sent by the app 1273  received 1273  answers lost 273  no answer 0
+keyed, a new key per try     payouts 1066  paid more than once  56 (  3300000 FCFA)  sent by the app 1066  received 1273  answers lost 273  no answer 0
+keyed, one key per action    payouts 1000  paid more than once   0 (        0 FCFA)  sent by the app 1066  received 1273  answers lost 273  no answer 0
+```
+
+- **Sans clé** : 273 réponses perdues, 273 renvois, **1 273 versements**
+  pour 1 000. 208 membres payés plus d'une fois, **13 650 000 FCFA** de
+  trop.
+- **Une clé neuve à chaque essai** : le serveur ne peut pas reconnaître
+  le renvoi, puisque la clé a changé. 56 membres payés plus d'une fois,
+  **3 300 000 FCFA** de trop.
+- **Une clé par action** : **1 000 versements, aucun en double**.
+
+La colonne surprenante est « received » : avec une clé, le serveur
+reçoit **1 273** requêtes alors que l'application n'en a envoyé que
+**1 066**. Les 207 de différence ont été renvoyées par le **transport
+HTTP de Go lui-même**. Sa documentation le dit : il renvoie une requête
+après une erreur réseau, sur une connexion déjà utilisée, si la requête
+est idempotente, et une requête est considérée comme telle quand elle
+porte un en-tête `Idempotency-Key`. Le transport fait confiance à la
+promesse de l'en-tête : un serveur qui reçoit `Idempotency-Key` sans
+l'honorer paie ces 207 renvois aussi.
+
+C'est pourquoi la ligne « une clé neuve à chaque essai » n'a que 56
+membres en trop : les renvois du transport gardaient la clé, seuls ceux
+de l'application la changeaient.
+
+## 5. Mesure : le double appui
+
+Une trésorière appuie deux fois sur « verser » : deux requêtes partent
+**au même instant**, avec la même clé. `cmd/doubletap` le fait 500 fois :
+
+```text
+check then pay   payouts  692 for 500  paid twice 192  statuses map[201:1000]
+keyed            payouts  500 for 500  paid twice   0  statuses map[201:1000]
+```
+
+`CheckThenPay` verse **692 fois pour 500** sur ce passage, et entre 92
+et 192 versements en trop sur trois passages : les deux transactions
+cherchent la clé en même temps, ne la trouvent ni l'une ni l'autre, et
+paient toutes les deux. L'enregistrement de la clé, avec `ON CONFLICT DO
+NOTHING`, échoue en silence pour la seconde. C'est la mise à jour perdue
+de la leçon 5.3 : lire, décider, écrire, avec une autre transaction
+entre la lecture et l'écriture.
+
+`Keyed` : **500 pour 500**. La deuxième requête attend sur l'`INSERT` de
+la clé, puis relit la réponse de la première. Les deux appuis reçoivent
+le même `201` avec le même identifiant de versement.
+
+## 6. Mesure : ce que coûte la clé, et ce que le client reçoit
+
+`cmd/cost` mesure 2 000 versements à la suite, sans perte, puis renvoie
+une même clé avec le même corps, avec un autre corps, et sans clé :
+
+```text
+each request  median 2.172ms  p99 4.76ms
+keyed         median 5.197ms  p99 8.251ms
+{"member":"awa","amount_fcfa":50000} -> 201  replayed:       {"id":1,"member":"awa","amount_fcfa":50000}
+{"member":"awa","amount_fcfa":50000} -> 201  replayed: true  {"id":1,"member":"awa","amount_fcfa":50000}
+{"member":"awa","amount_fcfa":75000} -> 422  replayed:       {"detail":"this key was used for another request","status":422,"title":"Unprocessable Entity","type":"https://api.tontine.example/problems/key-reused"}
+without a key -> 400  {"detail":"send an Idempotency-Key header","status":400,"title":"Bad Request","type":"https://api.tontine.example/problems/key-required"}
+```
+
+- **Le coût** : sur cette machine, la clé ajoute environ 3 ms par
+  versement (une transaction de quatre instructions au lieu d'une ; la
+  médiane de `EachRequest` varie entre 1,6 et 2,7 ms d'un passage à
+  l'autre). C'est cher pour une lecture, et négligeable pour un
+  versement qu'on ne doit faire qu'une fois.
+- **Le renvoi** reçoit **le même corps**, le même `id: 1`, avec
+  `Idempotent-Replayed: true` pour qui veut le savoir.
+- **La même clé avec 75 000 FCFA** reçoit `422` : le brouillon de l'IETF
+  sur l'en-tête `Idempotency-Key` recommande exactement ce statut quand
+  une clé est réutilisée avec un autre contenu.
+- **Sans clé**, `400` : l'API l'exige pour cette route.
+
+## 7. La campagne
+
+Dix mutations, sur le serveur et sur le client :
+
+```text
+clé prise non vérifiée                       tuee
+corps non comparé                            tuee
+clé prise hors de la transaction             tuee
+réponse non gardée                           tuee
+rejeu non signalé                            tuee
+rejeu répondu 200                            tuee
+clé facultative                              tuee
+empreinte du début du corps                  tuee
+une clé par essai                            tuee
+aucun nouvel essai                           tuee
+10/10 tuees
+```
+
+Aucune survivante : les tests ont été écrits avec les mesures, et
+chacun vise un des mécanismes mesurés. Les plus instructives sont :
+
+- **la clé prise hors de la transaction** (`pool.Exec` au lieu de
+  `tx.Exec`) : la clé est validée tout de suite, sans réponse. Une
+  requête simultanée la trouve prise, cherche la réponse, et lit `NULL`.
+  Le test des vingt requêtes simultanées la tue ;
+- **l'empreinte du début du corps** : deux corps qui ne diffèrent que
+  par le montant ont la même empreinte. La clé redonnée avec un autre
+  montant reçoit alors le reçu du premier, et le membre croit avoir
+  reçu 75 000 FCFA.
+
+Le test qui protège l'atomicité, et qui ne vient d'aucune mesure :
+
+@@P:en/l63/payout/payout_test.go|// A payout that fails@@
+
+## 8. La grille
+
+| Situation | Ce que fait `Keyed` | Statut |
+|---|---|---|
+| première requête avec une clé | prend la clé, paie, range la réponse | `201` |
+| renvoi, même clé, même corps | relit la réponse | la même, avec `Idempotent-Replayed: true` |
+| renvoi simultané | attend la première transaction, puis relit | la même |
+| même clé, autre corps | refuse | `422` |
+| pas de clé | refuse | `400` |
+| le paiement échoue | tout est annulé, la clé est libre | `503` ; le renvoi pourra réussir |
+
+## 9. Les trois erreurs qui restent
+
+### « Le client ne renvoie jamais un `POST` »
+
+Le tien peut-être. Le transport de Go le fait dès que la requête porte
+`Idempotency-Key` : 207 fois dans la mesure. Les proxys, les
+répartiteurs de charge et les bibliothèques des partenaires ont leurs
+propres règles. Un serveur qui paie doit supposer que chaque requête
+arrivera plus d'une fois.
+
+### « On vérifie que la clé n'existe pas, puis on paie »
+
+C'est `CheckThenPay` : juste quand les requêtes arrivent l'une après
+l'autre, faux quand elles arrivent ensemble, 192 versements en trop sur
+500 doubles appuis. Seule une contrainte d'unicité, prise **avant** le
+travail et dans la même transaction, départage deux requêtes
+simultanées.
+
+### « Une nouvelle clé à chaque essai, c'est plus sûr »
+
+La clé sert précisément à reconnaître l'essai suivant. Une clé par
+essai, c'est l'absence de clé : 56 membres payés plus d'une fois dans la
+mesure.
+
+## 10. Le lien avec la production
+
+- **La durée de vie des clés** : la table grossit d'une ligne par
+  versement. On purge les clés après un délai qui dépasse largement la
+  durée de renvoi des clients, 24 heures par exemple. Stripe documente
+  exactement ce choix, et ce qu'il implique : une clé redonnée après la
+  purge crée une nouvelle opération.
+- **La portée de la clé** : deux clients différents peuvent tirer la
+  même clé, par malchance ou par malveillance. La clé est unique **par
+  client** (le compte authentifié), pas globalement : la clé primaire
+  devient `(client_id, key)`.
+- **L'effet externe** : ici, le versement est une ligne dans la base, et
+  tout tient dans une transaction. Quand l'effet est un appel à
+  l'opérateur Mobile Money, il ne peut pas être dans la transaction : on
+  range un ordre dans l'outbox (leçon 5.2) avec la clé, et c'est l'envoi
+  de l'ordre qui doit être idempotent auprès de l'opérateur.
+- **Ce qu'on surveille** : le nombre de rejeux (un saut signale un
+  réseau qui se dégrade, ou un client qui renvoie trop vite) et le
+  nombre de `422` de clé réutilisée (un client qui réutilise ses clés).
+
+## 11. Ce qu'il faut retenir
+
+1. Un client qui ne reçoit pas de réponse ne sait pas si le travail est
+   fait : il renverra.
+2. La clé vient du client, une par action, gardée entre les essais.
+3. Le serveur prend la clé avant de travailler, dans la même transaction
+   que le travail ; la contrainte d'unicité départage les simultanés.
+4. Le renvoi reçoit la réponse gardée, à l'identique ; un autre corps
+   avec la même clé reçoit `422`.
+5. Le transport HTTP de Go renvoie lui-même une requête qui porte
+   `Idempotency-Key` : l'en-tête est une promesse que le serveur doit
+   tenir.
+
+## 12. Approfondissement
+
+### `409` pendant le traitement
+
+Le brouillon de l'IETF recommande `409` quand un renvoi arrive pendant
+que la première requête est encore traitée. `Keyed` fait **attendre** ce
+renvoi à la place, grâce au verrou de la clé unique : le client reçoit
+la bonne réponse, au prix d'une connexion occupée pendant l'attente.
+Quand le traitement est long (un appel à l'opérateur de plusieurs
+secondes), on valide la clé dans un état « en cours » **avant** le
+traitement, et un renvoi reçoit `409` avec `Retry-After`.
+
+### Idempotent par nature
+
+Certaines opérations n'ont pas besoin de clé : « fixer le montant de la
+part à 10 000 FCFA » (un `PUT`) donne le même résultat une ou dix fois.
+« Ajouter 10 000 FCFA » ne l'est pas. Quand on peut écrire une
+opération sous la première forme, on économise toute la machinerie de
+cette leçon.
+
+## 13. Le réflexe à installer
+
+Devant chaque `POST` qui change quelque chose, demande-toi :
+
+1. Que se passe-t-il si cette requête arrive deux fois ? Et deux fois en
+   même temps ?
+2. D'où vient la clé, et le client la garde-t-il entre les essais ?
+3. La clé est-elle prise dans la même transaction que le travail ?
+4. Le renvoi reçoit-il la même réponse ? Que reçoit une clé réutilisée
+   pour autre chose ?
+5. Combien de temps garde-t-on les clés, et pour qui sont-elles uniques ?
+
+## Sources
+
+- IETF, [RFC 9110 — HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html),
+  section 9.2.2 : « A request method is considered "idempotent" if the
+  intended effect on the server of multiple identical requests with that
+  method is the same as the effect for a single such request. »
+- IETF, [The Idempotency-Key HTTP Header Field](https://datatracker.ietf.org/doc/draft-ietf-httpapi-idempotency-key-header/),
+  brouillon du groupe *httpapi* (version 08, pas encore une RFC) : « If
+  there is an attempt to reuse an idempotency key with a different
+  request payload, the resource SHOULD reply with an HTTP 422 status
+  code » ; « If the request is retried, while the original request is
+  still being processed, the resource SHOULD reply with an HTTP 409
+  status code ».
+- Go, [package net/http](https://pkg.go.dev/net/http), `Transport` :
+  « HTTP requests are considered idempotent if they have HTTP methods
+  GET, HEAD, OPTIONS, or TRACE; or if their Header map contains an
+  "Idempotency-Key" or "X-Idempotency-Key" entry. »
+- PostgreSQL 17, [INSERT](https://www.postgresql.org/docs/17/sql-insert.html) :
+  « ON CONFLICT DO NOTHING simply avoids inserting a row as its
+  alternative action. »
+- Stripe, [Idempotent requests](https://docs.stripe.com/api/idempotent_requests) :
+  « Stripe saves the status code and body of the first request made with
+  a given idempotency key » ; « We generate a new request if a key is
+  reused after the original is pruned. »
+- AWS Builders' Library, [Making retries safe with idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs/) :
+  « Requests from the same caller with the same client request
+  identifier can be considered duplicate requests and can be dealt with
+  accordingly. »
+
+---
+
+➡️ Exercices : [6.3-exercices.md](../exercices/6.3-exercices.md)
