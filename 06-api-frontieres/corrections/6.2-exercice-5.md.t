@@ -1,0 +1,123 @@
+# Correction 6.2 — Exercice 5 : les cotisations à 1 FCFA
+
+> Rappel de l'énoncé : des cagnottes trop petites ; la passerelle
+> vérifie le montant, le service l'enregistre ; auditer, expliquer,
+> corriger.
+
+L'audit, la correction et leurs tests sont dans `ex5` du module de
+correction, verts sous `go vet ./...` et `go test -race -count=1 ./...`.
+
+## En bref
+
+- **La cause** : un corps avec `amount_fcfa` deux fois. La passerelle
+  lit le premier (la part), le service lit le dernier (1 FCFA).
+- **287 cotisations à 1 FCFA**, toutes de mobipay, toutes avec un nom en
+  double : **7 604 713 FCFA** manquent, depuis le 12 octobre à 16 h 34.
+- **La correction** : le service refuse un corps ambigu (version 2 de
+  `encoding/json`) ; la passerelle aussi, à terme. Aucun des deux
+  programmes « n'a raison » : le corps est ambigu, il devait être refusé.
+
+## 1. L'audit
+
+@@P:en/c62/ex5/audit.go|// Audit reads@@
+
+@@P:en/c62/ex5/audit.go|// isAmbiguous reports@@
+
+```text
+--- PASS: TestTheGatewayAndTheServiceDisagree (0.00s)
+--- PASS: TestAudit (0.00s)
+--- PASS: TestTheStrictServiceRefusesWhatTheGatewayLetThrough (0.00s)
+ok      example/border62/ex5    1.016s
+```
+
+## 2. Les chiffres
+
+`cmd/october` lance l'audit sur `Month()` :
+
+```text
+36000 contributions recorded
+short: 287, missing: 7604713 FCFA, by partner: map[mobipay:287]
+first: 2026-10-12 16:34, with a name twice: 287
+12 Oct: 1  15 Oct: 7  18 Oct: 8  21 Oct: 22  24 Oct: 21  27 Oct: 22  30 Oct: 35  
+```
+
+- **287 cotisations** enregistrées à 1 FCFA, pour **7 604 713 FCFA**
+  manquants ;
+- **toutes de mobipay**, et **toutes** ont un nom en double : la cause
+  est unique ;
+- **la première le 12 octobre à 16 h 34**, le jour de la version 4.2 de
+  l'application mobipay ;
+- **de plus en plus chaque jour** (1 le 12, 35 le 30) : la version se
+  déploie progressivement sur les téléphones des membres.
+
+## 3. La cause
+
+La première cotisation fautive (`cmd/firstshort`) :
+
+```text
+2026-10-12 16:34 mobipay {"tontine":1,"member":"t01-m18","round":2,"amount_fcfa":25000,"amount_fcfa":1}
+```
+
+- la passerelle parcourt les jetons et s'arrête au **premier**
+  `amount_fcfa` : 25 000, égal à la part, elle laisse passer ;
+- le service décode avec `encoding/json` version 1, qui garde le
+  **dernier** : 1 FCFA, enregistré.
+
+Chacun suit un comportement courant : la RFC 8259 dit seulement que les
+noms **devraient** être uniques, sans dire quoi faire sinon, et les
+programmes divergent. C'est exactement ce que prévient la documentation
+de `encoding/json/v2`. La question « lequel a raison ? » n'a pas de
+réponse : le corps dit deux choses, et la seule réponse sûre est de le
+refuser.
+
+Les deux programmes avaient leurs tests, et ils passaient. Ce qui
+n'était testé nulle part, c'est que **deux analyseurs différents lisent
+le même corps de la même façon**.
+
+## 4. La correction
+
+Côté service, le jour même :
+
+@@P:en/c62/ex5/gateway.go|// RecordStrict is how@@
+
+@@P:en/c62/ex5/audit_test.go|func TestTheStrictServiceRefusesWhatTheGatewayLetThrough@@
+
+Le service refuse désormais le corps en `400`, quelle que soit la
+valeur lue par la passerelle. C'est le dernier garde-fou ; la base peut
+en ajouter un autre, un `CHECK` sur le montant égal à la part du tour
+(leçon 5.1).
+
+À l'équipe de la passerelle : refuser elle aussi les noms en double
+(son analyseur a une option pour cela, ou elle décode une fois en
+strict avant de lire), et plus généralement **ne pas filtrer sur une
+lecture différente de celle du service**. Un filtre et le service qui
+lisent deux choses différentes, c'est un filtre qu'on peut contourner.
+
+Au partenaire mobipay : le corps de sa version 4.2 est invalide ; il
+doit corriger son application et, en attendant, ses membres recevront
+un `400`. Le contrat de l'API (leçon 6.4) doit écrire noir sur blanc
+« un nom en double est refusé ».
+
+## 5. Le compte rendu
+
+1. **Quoi** : du 12 au 31 octobre 2026, 287 cotisations envoyées par
+   l'application mobipay 4.2 ont été enregistrées à 1 FCFA au lieu de la
+   part : 7 604 713 FCFA manquent dans les cagnottes concernées, et 287
+   membres sont marqués à jour à tort.
+2. **Cause** : le corps contenait `amount_fcfa` deux fois. La passerelle
+   a vérifié la première valeur, le service a enregistré la dernière.
+3. **Détection** : par les trésorières, au versement, deux à trois
+   semaines plus tard. Rien ne comparait le montant enregistré à la part.
+4. **Correction** : le service refuse les noms en double depuis le
+   jour de l'analyse ; les 287 membres concernés sont remis « à payer »
+   et prévenus, sans pénalité de retard.
+5. **Prévention** : la passerelle refuse aussi les corps ambigus ; une
+   contrainte en base vérifie le montant d'une cotisation ; une alerte
+   compte les cotisations dont le montant diffère de la part ; le
+   contrat de l'API précise le refus des noms en double.
+
+## Ce qu'il faut retenir
+
+- Deux analyseurs qui lisent le même corps peuvent y lire deux choses.
+- Un corps ambigu ne s'interprète pas, il se refuse.
+- Un filtre n'a de sens que s'il lit exactement ce que le service lit.
