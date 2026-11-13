@@ -1,0 +1,62 @@
+# Correction 6.1 — Exercice 2 : les erreurs des prêts
+
+> Rappel de l'énoncé : traduire les erreurs des prêts en problèmes
+> RFC 9457, même enveloppées.
+
+La solution est dans `ex2` du module de correction, verte sous
+`go vet ./...` et `go test -race -count=1 ./...`.
+
+## En bref
+
+- **Un seul endroit traduit** les erreurs du domaine en statuts.
+- **`errors.Is` et `errors.As` traversent les enveloppes** faites avec
+  `%w` : la couche qui ajoute du contexte ne change pas la traduction.
+- **Le détail n'est donné que pour les erreurs connues.**
+
+## 1. La solution
+
+```go
+@@GOL:en/c61/ex2/loans.go:38-47@@
+```
+
+```go
+@@GOL:en/c61/ex2/loans.go:49-66@@
+```
+
+```text
+--- PASS: TestEachErrorHasItsStatusAndType (0.00s)
+--- PASS: TestTheFieldIsNamed (0.00s)
+--- PASS: TestAnUnexpectedErrorSaysNothing (0.00s)
+ok      example/api61/ex2       1.011s
+```
+
+## 2. Les deux questions
+
+1. **`ErrLimitReached` est un `409`**, `ErrTooHigh` un `422`. Le montant
+   trop élevé est une faute de la requête : la même demande sera
+   refusée demain. La limite atteinte dépend de **l'état actuel** de la
+   tontine : quand un prêt sera remboursé, la même demande passera.
+   C'est la définition de `409` dans la RFC 9110, un conflit avec l'état
+   courant de la ressource. L'application peut proposer « réessayez
+   après le prochain remboursement ».
+2. **`errors.As` pour `FieldError`** : ce n'est pas une valeur unique,
+   mais un **type** dont chaque valeur porte son champ. `errors.Is`
+   compare des valeurs ; `errors.As` cherche dans la chaîne une erreur de
+   ce type et la rend, ce qui donne accès à `field.Field`. Ici, le champ
+   arrive par `err.Error()` dans `Detail` ; une API plus riche le mettrait
+   dans une extension du problème (`"errors": [{"field": ...}]`), que la
+   RFC 9457 permet.
+
+## 3. L'ordre des cas
+
+`FieldError` est testé en premier. L'ordre n'a pas d'importance ici,
+puisque les erreurs ne se recouvrent pas, mais il en aurait si une
+erreur enveloppait à la fois un `FieldError` et `ErrTooHigh` : le premier
+cas qui correspond gagne. On met le plus précis d'abord.
+
+## Ce qu'il faut retenir
+
+- Une fonction de traduction, testée avec les erreurs **enveloppées**.
+- `409` : l'état empêche, la même requête passera peut-être plus tard ;
+  `422` : la requête est fausse.
+- L'inattendu ne donne aucun détail.
