@@ -60,7 +60,7 @@ Les exercices sont gradués :
 | 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ✅ **complet** |
 | 5 | Données & backend | Modélisation, transactions, concurrence, caching | ✅ **complet** |
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ✅ **complet** |
-| 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | 🟡 en cours |
+| 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ✅ **complet** |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
 | 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
@@ -179,6 +179,7 @@ peuvent un jour devenir des services. Chaque architecture y est mesurée
 | 7.3 | [L'architecture hexagonale : des ports, des adaptateurs, et des faux fidèles](07-ddd-architectures/cours/7.3-l-hexagone.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.3-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 | 7.4 | [Clean Architecture et les couches : ce qu'elles protègent, ce qu'elles coûtent](07-ddd-architectures/cours/7.4-le-cout-des-couches.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.4-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 | 7.5 | [Le monolithe modulaire : des frontières tenues, dans un seul programme](07-ddd-architectures/cours/7.5-le-monolithe-modulaire.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.5-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
+| 7.6 | [Extraire un module en service : ce que coûte le réseau, et comment migrer sans sauter](07-ddd-architectures/cours/7.6-extraire-un-service.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.6-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 
 ## Organisation du dépôt
 
