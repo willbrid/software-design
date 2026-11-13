@@ -59,7 +59,7 @@ Les exercices sont gradués :
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ✅ **complet** |
 | 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ✅ **complet** |
 | 5 | Données & backend | Modélisation, transactions, concurrence, caching | ✅ **complet** |
-| 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
+| 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | 🟡 en cours |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
@@ -142,6 +142,20 @@ lancé par exemple avec
 | 5.4 | [Faire évoluer un schéma sans coupure : les migrations](05-donnees-backend/cours/5.4-les-migrations.md) | ✅ | [5 exercices](05-donnees-backend/exercices/5.4-exercices.md) | [5/5](05-donnees-backend/corrections/) |
 | 5.5 | [Lire vite : requêtes, index, et le N+1](05-donnees-backend/cours/5.5-lire-vite.md) | ✅ | [5 exercices](05-donnees-backend/exercices/5.5-exercices.md) | [5/5](05-donnees-backend/corrections/) |
 | 5.6 | [Le cache : ce qu'il coûte, et quand il ment](05-donnees-backend/cours/5.6-le-cache.md) | ✅ | [5 exercices](05-donnees-backend/exercices/5.6-exercices.md) | [5/5](05-donnees-backend/corrections/) |
+
+## Niveau 6 — API & frontières
+
+Les données sont protégées dans la base ; les requêtes qui les changent
+arrivent maintenant de l'extérieur, par des programmes qui ne lisent pas
+les messages d'erreur. Ce niveau apprend à dire à ces programmes ce qui
+s'est passé, à refuser ce qui ne doit pas entrer, à supporter les
+requêtes renvoyées, et à faire évoluer une API sans casser les
+applications installées. La bibliothèque standard suffit, avec le même
+PostgreSQL 17 que le niveau 5 pour l'idempotence.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 6.1 | [Concevoir une API HTTP : des méthodes et des statuts qui disent quoi faire](06-api-frontieres/cours/6.1-methodes-et-statuts.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.1-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 
 ## Organisation du dépôt
 
