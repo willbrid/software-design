@@ -1,0 +1,155 @@
+# Exercices 6.6 — L'écran et l'API
+
+Cinq exercices, du plus simple au plus ouvert. Traite-les **dans l'ordre** et
+écris tes réponses dans `mes-reponses/` avant d'ouvrir les corrections.
+
+Les exercices s'appuient sur les paquets de la
+[leçon 6.6](../cours/6.6-l-ecran-et-l-api.md) (`rules`, `home`, `slow`),
+recopiés tels quels dans le module des exercices. Ils n'ont besoin que de
+la bibliothèque standard. Tout le code ci-dessous compile et passe
+`go vet` ; les trésorières, les membres et l'incident sont **fictifs**.
+
+---
+
+## Exercice 1 — Compréhension : que voit l'écran ?
+
+*Niveau 1. Aucune ligne de code à écrire.*
+
+### 1.a — Six situations
+
+Avec le serveur de la leçon (`If-Match` exigé), dis ce que reçoit l'écran
+et ce qu'il doit faire.
+
+1. Un écran envoie `PUT /rules` sans `If-Match`.
+2. Il envoie `If-Match: "v4"` alors que le règlement est en `"v5"`.
+3. Il envoie `GET /rules` avec `If-None-Match: "v5"`, et le règlement est
+   en `"v5"`.
+4. Les deux trésorières changent **la part** en même temps, l'une à
+   12 500, l'autre à 15 000.
+5. Un écran envoie `If-Match: v5`, sans guillemets.
+6. L'écran d'accueil passe par le BFF, et le service des soldes ne répond
+   plus.
+
+### 1.b — Trois pourquoi
+
+1. Pourquoi une transaction de la base (leçon 5.3) ne protège-t-elle pas
+   de la modification perdue entre deux écrans ?
+2. Pourquoi le `304` n'accélère-t-il pas l'écran sur 3G autant que le
+   BFF ?
+3. Pourquoi les vagues ramènent-elles l'accueil de 2,4 s à 0,6 s, et pas
+   à 0,3 s ?
+
+### 1.c — Où mettre la règle ?
+
+Une équipe propose de calculer, dans le BFF, « le membre est-il à jour de
+ses cotisations ? », pour l'afficher sur l'accueil. Qu'en penses-tu ?
+
+---
+
+## Exercice 2 — Code : changer un seul champ
+
+*Niveau 2. Écrire un `PATCH` conditionnel ; les tests sont fournis.*
+
+@@P:en/e66/ex2/patch.go|// Patch is the body@@
+
+@@P:en/e66/ex2/patch.go|// Handler serves@@
+
+Les tests de `ex2/patch_test.go` :
+
+```text
+--- FAIL: TestAPatchChangesOnlyItsFields (0.00s)
+    patch_test.go:30: 405 "" {ShareFCFA:0 PenaltyPerDay:0 PayoutOrder:[] MeetingWeekday:}
+--- FAIL: TestAPatchIsConditional (0.00s)
+    patch_test.go:44: no If-Match: 405, want 428
+    patch_test.go:48: stale: 405 "", want 412 "v2"
+    patch_test.go:51: unknown field: 405, want 400
+    patch_test.go:54: {ShareFCFA:10000 PenaltyPerDay:500 PayoutOrder:[awa bintou] MeetingWeekday:saturday} v1
+FAIL
+FAIL    example/screen66/ex2    0.004s
+FAIL
+```
+
+Question : avec un `PATCH` qui ne touche que la part, `If-Match` est-il
+encore utile quand l'autre trésorière change la pénalité ?
+
+---
+
+## Exercice 3 — Refactoring : ne pas écraser l'autre après un `412`
+
+*Niveau 3. Écrire la fusion de l'écran ; les tests sont fournis.*
+
+L'écran de la leçon, après un `412`, relit le règlement et réapplique son
+changement. Une nouvelle version de l'écran garde ce que la trésorière a
+modifié à l'écran, sans savoir quels champs exactement : elle a la
+version lue (`base`), la sienne (`mine`), et celle du serveur (`theirs`).
+
+@@P:en/e66/ex3/merge.go|// Merge returns@@
+
+```text
+--- FAIL: TestMerge (0.00s)
+    merge_test.go:43: two different fields: {ShareFCFA:12500 PenaltyPerDay:500 PayoutOrder:[awa bintou] MeetingWeekday:saturday} [], want {ShareFCFA:12500 PenaltyPerDay:1000 PayoutOrder:[awa bintou] MeetingWeekday:saturday} []
+    merge_test.go:43: the same field, two values: {ShareFCFA:12500 PenaltyPerDay:500 PayoutOrder:[awa bintou] MeetingWeekday:saturday} [], want {ShareFCFA:15000 PenaltyPerDay:500 PayoutOrder:[awa bintou] MeetingWeekday:saturday} ["share_fcfa"]
+    merge_test.go:43: the order on one side, the share on the other: {ShareFCFA:10000 PenaltyPerDay:500 PayoutOrder:[bintou awa] MeetingWeekday:saturday} [], want {ShareFCFA:15000 PenaltyPerDay:500 PayoutOrder:[bintou awa] MeetingWeekday:saturday} []
+    merge_test.go:43: the order on both sides: {ShareFCFA:10000 PenaltyPerDay:500 PayoutOrder:[bintou awa] MeetingWeekday:saturday} [], want {ShareFCFA:10000 PenaltyPerDay:500 PayoutOrder:[awa bintou chantal] MeetingWeekday:saturday} ["payout_order"]
+FAIL
+FAIL    example/screen66/ex3    0.003s
+FAIL
+```
+
+Question : que montre l'écran pour un conflit ?
+
+---
+
+## Exercice 4 — Design : le BFF de l'écran de réunion
+
+*Niveau 4. Aucune ligne de code : une page.*
+
+Pendant la réunion, la trésorière ouvre un écran qui montre : les membres
+présents et absents, qui a payé le tour, le montant de la cagnotte, le
+bénéficiaire du tour, les prêts en retard, et un bouton « clore le
+tour ». L'API fine a une route pour chaque chose.
+
+Décris le BFF de cet écran : les appels qu'il fait et dans quel ordre ;
+ce qui est indispensable et ce qui peut manquer ; son budget de temps ;
+ce qu'il met en cache et pour combien de temps (leçon 5.6) ; et ce que
+fait le bouton « clore le tour » : passe-t-il par le BFF ?
+
+---
+
+## Exercice 5 — Incident : le BFF qui attendait
+
+*Niveau 7. Un incident à mesurer, puis à corriger.*
+
+Le vendredi 13 novembre 2026 au soir, la base du service des soldes
+ralentit : un appel sur quatre prend 1,5 s. L'écran d'accueil passe par
+le BFF de la leçon, qui attend chaque réponse. Les membres se plaignent
+d'un accueil « qui tourne ».
+
+@@P:en/e66/ex5/evening.go|// Evening builds@@
+
+1. **La mesure.** Écris `Summarize` dans `ex5/audit.go` :
+
+@@P:en/e66/ex5/audit.go|// Summary says@@
+
+2. **Les chiffres.** Rejoue la soirée avec le BFF de la leçon : médiane,
+   95ᵉ et 99ᵉ centiles, écrans de plus d'une seconde.
+3. **La correction.** Écris `BudgetBFF` dans `ex5/budget.go` :
+
+@@P:en/e66/ex5/budget.go|// BudgetBFF serves@@
+
+   Les tests de `ex5/audit_test.go` :
+
+```text
+--- FAIL: TestSummarize (0.00s)
+    audit_test.go:21: {P50:0s P95:0s P99:0s Over1s:0}
+--- FAIL: TestTheBudgetIsKept (2.01s)
+    audit_test.go:39: took 2.009248074s, for a budget of 300ms
+    audit_test.go:43: 200 "" {Name:Awa Tontines:[{Name:Tontine du marché NextDate:2026-11-21 Beneficiary:Bintou DueFCFA:10000} {Name:Tontine des couturières NextDate:2026-11-21 Beneficiary:Bintou DueFCFA:10000} {Name:Tontine de la famille NextDate:2026-11-21 Beneficiary:Bintou DueFCFA:10000}]}
+FAIL
+FAIL    example/screen66/ex5    2.024s
+FAIL
+```
+
+   Rejoue la soirée avec un budget de 300 ms.
+4. **Ce que perd le membre** avec la correction, et ce qu'il gagne.
+5. **Le compte rendu**, en cinq points.

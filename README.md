@@ -59,7 +59,7 @@ Les exercices sont gradués :
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ✅ **complet** |
 | 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ✅ **complet** |
 | 5 | Données & backend | Modélisation, transactions, concurrence, caching | ✅ **complet** |
-| 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | 🟡 en cours |
+| 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ✅ **complet** |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
@@ -160,6 +160,7 @@ PostgreSQL 17 que le niveau 5 pour l'idempotence.
 | 6.3 | [L'idempotence : quand le client renvoie la requête](06-api-frontieres/cours/6.3-idempotence.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.3-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 | 6.4 | [Les contrats : ce qu'une API promet, et comment le tester](06-api-frontieres/cours/6.4-les-contrats.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.4-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 | 6.5 | [Versionner une API : rompre sans casser, et savoir quand arrêter](06-api-frontieres/cours/6.5-versionner.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.5-exercices.md) | [5/5](06-api-frontieres/corrections/) |
+| 6.6 | [L'écran et l'API : écrire à deux, relire pour rien, attendre le réseau](06-api-frontieres/cours/6.6-l-ecran-et-l-api.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.6-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 
 ## Organisation du dépôt
 
