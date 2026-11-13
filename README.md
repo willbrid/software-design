@@ -58,7 +58,7 @@ Les exercices sont gradués :
 | 2 | OOP & SOLID | Modélisation, polymorphisme, principes, limites | ✅ **complet** |
 | 3 | Design patterns | Le problème d'abord, le pattern ensuite | ✅ **complet** |
 | 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ✅ **complet** |
-| 5 | Données & backend | Modélisation, transactions, concurrence, caching | 🟡 en cours (1/6) |
+| 5 | Données & backend | Modélisation, transactions, concurrence, caching | 🟡 en cours (2/6) |
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ⚪ à venir |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
@@ -137,7 +137,7 @@ lancé par exemple avec
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
 | 5.1 | [Du modèle au schéma : la base de données comme dernier garde-fou](05-donnees-backend/cours/5.1-du-modele-au-schema.md) | ✅ | [5 exercices](05-donnees-backend/exercices/5.1-exercices.md) | [5/5](05-donnees-backend/corrections/) |
-| 5.2 | Les transactions : tout ou rien, et ce que « rien » veut dire | ⚪ | | |
+| 5.2 | [Les transactions : tout ou rien, et ce que « rien » veut dire](05-donnees-backend/cours/5.2-les-transactions.md) | ✅ | [5 exercices](05-donnees-backend/exercices/5.2-exercices.md) | [5/5](05-donnees-backend/corrections/) |
 | 5.3 | La concurrence : mises à jour perdues, isolation, verrous | ⚪ | | |
 | 5.4 | Faire évoluer un schéma sans coupure : les migrations | ⚪ | | |
 | 5.5 | Lire vite : requêtes, index, et le N+1 | ⚪ | | |
