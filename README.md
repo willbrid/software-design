@@ -60,7 +60,7 @@ Les exercices sont gradués :
 | 4 | Analyser avant de concevoir | Exigences, qualités mesurables, modèle du domaine, diagrammes utiles, C4, ADR | ✅ **complet** |
 | 5 | Données & backend | Modélisation, transactions, concurrence, caching | ✅ **complet** |
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ✅ **complet** |
-| 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ⚪ à venir |
+| 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | 🟡 en cours |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
 | 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
@@ -161,6 +161,20 @@ PostgreSQL 17 que le niveau 5 pour l'idempotence.
 | 6.4 | [Les contrats : ce qu'une API promet, et comment le tester](06-api-frontieres/cours/6.4-les-contrats.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.4-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 | 6.5 | [Versionner une API : rompre sans casser, et savoir quand arrêter](06-api-frontieres/cours/6.5-versionner.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.5-exercices.md) | [5/5](06-api-frontieres/corrections/) |
 | 6.6 | [L'écran et l'API : écrire à deux, relire pour rien, attendre le réseau](06-api-frontieres/cours/6.6-l-ecran-et-l-api.md) | ✅ | [5 exercices](06-api-frontieres/exercices/6.6-exercices.md) | [5/5](06-api-frontieres/corrections/) |
+
+## Niveau 7 — DDD & architectures applicatives
+
+Les règles du domaine sont trouvées (niveau 4), protégées dans la base
+(niveau 5), exposées par l'API (niveau 6). Ce niveau se demande où elles
+vivent **dans le code**, et comment le code s'organise autour d'elles :
+des agrégats qui gardent leurs règles, des contextes qui ont chacun leur
+langage, des dépendances qui pointent vers le domaine, et des modules qui
+peuvent un jour devenir des services. Chaque architecture y est mesurée
+à ce qu'elle coûte autant qu'à ce qu'elle protège.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 7.1 | [Le modèle dans le code : des agrégats qui gardent leurs règles](07-ddd-architectures/cours/7.1-les-agregats.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.1-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 
 ## Organisation du dépôt
 
