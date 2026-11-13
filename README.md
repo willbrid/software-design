@@ -175,6 +175,7 @@ peuvent un jour devenir des services. Chaque architecture y est mesurée
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
 | 7.1 | [Le modèle dans le code : des agrégats qui gardent leurs règles](07-ddd-architectures/cours/7.1-les-agregats.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.1-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
+| 7.2 | [Le langage et les contextes délimités : un mot, un sens, une frontière](07-ddd-architectures/cours/7.2-les-contextes.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.2-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 
 ## Organisation du dépôt
 
