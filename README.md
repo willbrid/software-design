@@ -62,7 +62,7 @@ Les exercices sont gradués :
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ✅ **complet** |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ✅ **complet** |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ✅ **complet** |
-| 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | 🟡 en cours |
+| 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ✅ **complet** |
 | 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
 | 11 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
 
@@ -218,6 +218,7 @@ la bibliothèque standard seule.
 | 9.3 | [La surcharge : refuser tôt, par ordre d'importance, et chaque client à sa mesure](09-systemes-distribues/cours/9.3-la-surcharge.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.3-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 | 9.4 | [L'observabilité : voir ce qui se passe, et ne réveiller quelqu'un que pour ce qui compte](09-systemes-distribues/cours/9.4-l-observabilite.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.4-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 | 9.5 | [La sécurité dans la conception : à qui est cet objet, qui m'appelle vraiment, et que peut faire mon code s'il est trompé](09-systemes-distribues/cours/9.5-la-securite.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.5-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
+| 9.6 | [Le temps et l'accord : des horloges qui mentent, des baux qui expirent, et des jetons qui protègent](09-systemes-distribues/cours/9.6-le-temps-et-l-accord.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.6-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 
 ## Organisation du dépôt
 
