@@ -256,7 +256,7 @@ d'expert.
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
 | 11.1 | [Estimer avant de concevoir : des ordres de grandeur, vérifiés par la mesure](11-architecture-avancee/cours/11.1-estimer.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.1-exercices.md) | [5/5](11-architecture-avancee/corrections/) |
-| 11.2 | [Partitionner : couper les données quand une base ne suffit plus, et pas avant](11-architecture-avancee/cours/11.2-partitionner.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.2-exercices.md) | ⚪ à venir |
+| 11.2 | [Partitionner : couper les données quand une base ne suffit plus, et pas avant](11-architecture-avancee/cours/11.2-partitionner.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.2-exercices.md) | [5/5](11-architecture-avancee/corrections/) |
 
 ## Organisation du dépôt
 
