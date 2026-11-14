@@ -239,6 +239,7 @@ standard seule.
 | 10.3 | [La facturation : des francs entiers, des arrondis écrits, des débits qu'on ne refait pas](10-saas/cours/10.3-la-facturation.md) | ✅ | [5 exercices](10-saas/exercices/10.3-exercices.md) | [5/5](10-saas/corrections/) |
 | 10.4 | [Les quotas : ce que chaque offre permet, tenu même sous la concurrence, et sans voisin bruyant](10-saas/cours/10.4-les-quotas.md) | ✅ | [5 exercices](10-saas/exercices/10.4-exercices.md) | [5/5](10-saas/corrections/) |
 | 10.5 | [L'audit : savoir qui a fait quoi, et pouvoir le prouver](10-saas/cours/10.5-l-audit.md) | ✅ | [5 exercices](10-saas/exercices/10.5-exercices.md) | [5/5](10-saas/corrections/) |
+| 10.6 | [Les webhooks sortants : prévenir les systèmes des clients sans se laisser bloquer, tromper ou détourner par eux](10-saas/cours/10.6-les-webhooks-sortants.md) | ✅ | [5 exercices](10-saas/exercices/10.6-exercices.md) | ⚪ à venir |
 
 ## Organisation du dépôt
 
