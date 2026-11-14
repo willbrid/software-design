@@ -196,6 +196,7 @@ niveau 5.
 |---|---|---|---|---|
 | 8.1 | [Commande ou événement : découpler par les messages](08-messaging-evenements/cours/8.1-commande-ou-evenement.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.1-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 | 8.2 | [L'outbox transactionnelle : publier sans perdre ni inventer](08-messaging-evenements/cours/8.2-l-outbox.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.2-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
+| 8.3 | [Au moins une fois : des abonnés qui supportent le doublon, le désordre et le message empoisonné](08-messaging-evenements/cours/8.3-au-moins-une-fois.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.3-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 
 ## Organisation du dépôt
 
