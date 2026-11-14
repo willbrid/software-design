@@ -236,6 +236,7 @@ standard seule.
 |---|---|---|---|---|
 | 10.1 | [Le multi-tenancy : chaque association chez elle, dans les mêmes tables](10-saas/cours/10.1-le-multi-tenancy.md) | ✅ | [5 exercices](10-saas/exercices/10.1-exercices.md) | [5/5](10-saas/corrections/) |
 | 10.2 | [Les rôles : qui peut faire quoi, dans quelle association, et jusqu'à quand](10-saas/cours/10.2-les-roles.md) | ✅ | [5 exercices](10-saas/exercices/10.2-exercices.md) | [5/5](10-saas/corrections/) |
+| 10.3 | [La facturation : des francs entiers, des arrondis écrits, des débits qu'on ne refait pas](10-saas/cours/10.3-la-facturation.md) | ✅ | [5 exercices](10-saas/exercices/10.3-exercices.md) | ⚪ à venir |
 
 ## Organisation du dépôt
 
