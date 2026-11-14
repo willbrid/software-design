@@ -217,6 +217,7 @@ la bibliothèque standard seule.
 | 9.2 | [La résilience : des délais, des tentatives qui n'aggravent pas la panne, et un coupe-circuit](09-systemes-distribues/cours/9.2-la-resilience.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.2-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 | 9.3 | [La surcharge : refuser tôt, par ordre d'importance, et chaque client à sa mesure](09-systemes-distribues/cours/9.3-la-surcharge.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.3-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 | 9.4 | [L'observabilité : voir ce qui se passe, et ne réveiller quelqu'un que pour ce qui compte](09-systemes-distribues/cours/9.4-l-observabilite.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.4-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
+| 9.5 | [La sécurité dans la conception : à qui est cet objet, qui m'appelle vraiment, et que peut faire mon code s'il est trompé](09-systemes-distribues/cours/9.5-la-securite.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.5-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 
 ## Organisation du dépôt
 
