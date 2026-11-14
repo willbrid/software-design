@@ -257,6 +257,7 @@ d'expert.
 |---|---|---|---|---|
 | 11.1 | [Estimer avant de concevoir : des ordres de grandeur, vérifiés par la mesure](11-architecture-avancee/cours/11.1-estimer.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.1-exercices.md) | [5/5](11-architecture-avancee/corrections/) |
 | 11.2 | [Partitionner : couper les données quand une base ne suffit plus, et pas avant](11-architecture-avancee/cours/11.2-partitionner.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.2-exercices.md) | [5/5](11-architecture-avancee/corrections/) |
+| 11.3 | [Changer sans arrêter : des migrations qui ne bloquent personne](11-architecture-avancee/cours/11.3-changer-sans-arreter.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.3-exercices.md) | ⚪ à venir |
 
 ## Organisation du dépôt
 
