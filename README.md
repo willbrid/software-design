@@ -255,7 +255,7 @@ d'expert.
 
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
-| 11.1 | [Estimer avant de concevoir : des ordres de grandeur, vérifiés par la mesure](11-architecture-avancee/cours/11.1-estimer.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.1-exercices.md) | ⚪ à venir |
+| 11.1 | [Estimer avant de concevoir : des ordres de grandeur, vérifiés par la mesure](11-architecture-avancee/cours/11.1-estimer.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.1-exercices.md) | [5/5](11-architecture-avancee/corrections/) |
 
 ## Organisation du dépôt
 
