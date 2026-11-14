@@ -64,7 +64,7 @@ Les exercices sont gradués :
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ✅ **complet** |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ✅ **complet** |
 | 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ✅ **complet** |
-| 11 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
+| 11 | Architecture avancée | System design guidé façon CTO | 🟡 en cours |
 
 Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architecture.
 
@@ -240,6 +240,22 @@ standard seule.
 | 10.4 | [Les quotas : ce que chaque offre permet, tenu même sous la concurrence, et sans voisin bruyant](10-saas/cours/10.4-les-quotas.md) | ✅ | [5 exercices](10-saas/exercices/10.4-exercices.md) | [5/5](10-saas/corrections/) |
 | 10.5 | [L'audit : savoir qui a fait quoi, et pouvoir le prouver](10-saas/cours/10.5-l-audit.md) | ✅ | [5 exercices](10-saas/exercices/10.5-exercices.md) | [5/5](10-saas/corrections/) |
 | 10.6 | [Les webhooks sortants : prévenir les systèmes des clients sans se laisser bloquer, tromper ou détourner par eux](10-saas/cours/10.6-les-webhooks-sortants.md) | ✅ | [5 exercices](10-saas/exercices/10.6-exercices.md) | [5/5](10-saas/corrections/) |
+
+## Niveau 11 — Architecture avancée
+
+Le dernier niveau change de point de vue : il ne s'agit plus de
+concevoir une partie, mais de décider pour le système entier, comme un
+CTO ou un architecte principal. Ce niveau apprend à estimer avant de
+construire, à partitionner les données quand une base ne suffit plus, à
+changer le schéma sans arrêter le service, à survivre à la perte d'un
+centre de données, à traiter des millions de lignes sans tout
+recommencer à chaque panne, et à défendre un ensemble de choix. Les
+exercices montent jusqu'à l'entretien senior et au problème ouvert
+d'expert.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 11.1 | [Estimer avant de concevoir : des ordres de grandeur, vérifiés par la mesure](11-architecture-avancee/cours/11.1-estimer.md) | ✅ | [5 exercices](11-architecture-avancee/exercices/11.1-exercices.md) | ⚪ à venir |
 
 ## Organisation du dépôt
 
