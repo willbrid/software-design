@@ -63,7 +63,7 @@ Les exercices sont gradués :
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ✅ **complet** |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ✅ **complet** |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ✅ **complet** |
-| 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | 🟡 en cours |
+| 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ✅ **complet** |
 | 11 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
 
 Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architecture.
@@ -239,7 +239,7 @@ standard seule.
 | 10.3 | [La facturation : des francs entiers, des arrondis écrits, des débits qu'on ne refait pas](10-saas/cours/10.3-la-facturation.md) | ✅ | [5 exercices](10-saas/exercices/10.3-exercices.md) | [5/5](10-saas/corrections/) |
 | 10.4 | [Les quotas : ce que chaque offre permet, tenu même sous la concurrence, et sans voisin bruyant](10-saas/cours/10.4-les-quotas.md) | ✅ | [5 exercices](10-saas/exercices/10.4-exercices.md) | [5/5](10-saas/corrections/) |
 | 10.5 | [L'audit : savoir qui a fait quoi, et pouvoir le prouver](10-saas/cours/10.5-l-audit.md) | ✅ | [5 exercices](10-saas/exercices/10.5-exercices.md) | [5/5](10-saas/corrections/) |
-| 10.6 | [Les webhooks sortants : prévenir les systèmes des clients sans se laisser bloquer, tromper ou détourner par eux](10-saas/cours/10.6-les-webhooks-sortants.md) | ✅ | [5 exercices](10-saas/exercices/10.6-exercices.md) | ⚪ à venir |
+| 10.6 | [Les webhooks sortants : prévenir les systèmes des clients sans se laisser bloquer, tromper ou détourner par eux](10-saas/cours/10.6-les-webhooks-sortants.md) | ✅ | [5 exercices](10-saas/exercices/10.6-exercices.md) | [5/5](10-saas/corrections/) |
 
 ## Organisation du dépôt
 
