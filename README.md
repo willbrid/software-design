@@ -61,7 +61,7 @@ Les exercices sont gradués :
 | 5 | Données & backend | Modélisation, transactions, concurrence, caching | ✅ **complet** |
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ✅ **complet** |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ✅ **complet** |
-| 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | 🟡 en cours |
+| 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ✅ **complet** |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
 | 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
 | 11 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
@@ -188,9 +188,9 @@ préviennent sans s'attendre. Ce niveau apprend à distinguer un fait d'un
 ordre, à publier un événement sans le perdre ni l'inventer, à le
 recevoir deux fois sans dommage, à vivre avec des vues en retard, à
 mener une action en plusieurs étapes qui peut échouer au milieu, et à
-faire évoluer des événements déjà écrits. Le bus de la leçon 8.1 est en
-mémoire ; les suivantes s'appuient sur le même PostgreSQL 17 que le
-niveau 5.
+faire évoluer des événements déjà écrits. Les leçons 8.2 à 8.4
+s'appuient sur le même PostgreSQL 17 que le niveau 5 ; les autres n'ont
+besoin que de la bibliothèque standard.
 
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
@@ -199,6 +199,7 @@ niveau 5.
 | 8.3 | [Au moins une fois : des abonnés qui supportent le doublon, le désordre et le message empoisonné](08-messaging-evenements/cours/8.3-au-moins-une-fois.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.3-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 | 8.4 | [La cohérence éventuelle : des vues en retard, et comment vivre avec](08-messaging-evenements/cours/8.4-la-coherence-eventuelle.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.4-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 | 8.5 | [Les sagas : une action en plusieurs étapes, qui peut échouer au milieu](08-messaging-evenements/cours/8.5-les-sagas.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.5-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
+| 8.6 | [Faire évoluer les événements, et les rejouer](08-messaging-evenements/cours/8.6-faire-evoluer-les-evenements.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.6-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 
 ## Organisation du dépôt
 
