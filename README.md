@@ -62,7 +62,7 @@ Les exercices sont gradués :
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ✅ **complet** |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ✅ **complet** |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ✅ **complet** |
-| 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
+| 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | 🟡 en cours |
 | 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
 | 11 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
 
@@ -200,6 +200,20 @@ besoin que de la bibliothèque standard.
 | 8.4 | [La cohérence éventuelle : des vues en retard, et comment vivre avec](08-messaging-evenements/cours/8.4-la-coherence-eventuelle.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.4-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 | 8.5 | [Les sagas : une action en plusieurs étapes, qui peut échouer au milieu](08-messaging-evenements/cours/8.5-les-sagas.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.5-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 | 8.6 | [Faire évoluer les événements, et les rejouer](08-messaging-evenements/cours/8.6-faire-evoluer-les-evenements.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.6-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
+
+## Niveau 9 — Systèmes distribués
+
+L'application tourne désormais sur plusieurs instances et plusieurs
+services, sous une vraie charge. Ce niveau apprend à trouver ce qui
+sature avant d'ajouter des machines, à survivre aux pannes partielles
+sans les aggraver, à refuser tôt ce qu'on ne peut pas servir, à voir ce
+qui se passe, à se protéger des requêtes hostiles, et à décider sans
+horloge commune. Les mesures tournent sur un vrai PostgreSQL 17, ou avec
+la bibliothèque standard seule.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 9.1 | [La scalabilité : trouver le goulot avant d'ajouter des machines](09-systemes-distribues/cours/9.1-la-scalabilite.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.1-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 
 ## Organisation du dépôt
 
