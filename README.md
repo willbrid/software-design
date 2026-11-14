@@ -63,7 +63,7 @@ Les exercices sont gradués :
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ✅ **complet** |
 | 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ✅ **complet** |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ✅ **complet** |
-| 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
+| 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | 🟡 en cours |
 | 11 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
 
 Transverse tout du long : tests, CI/CD, performance, ADR, migration d'architecture.
@@ -219,6 +219,22 @@ la bibliothèque standard seule.
 | 9.4 | [L'observabilité : voir ce qui se passe, et ne réveiller quelqu'un que pour ce qui compte](09-systemes-distribues/cours/9.4-l-observabilite.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.4-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 | 9.5 | [La sécurité dans la conception : à qui est cet objet, qui m'appelle vraiment, et que peut faire mon code s'il est trompé](09-systemes-distribues/cours/9.5-la-securite.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.5-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 | 9.6 | [Le temps et l'accord : des horloges qui mentent, des baux qui expirent, et des jetons qui protègent](09-systemes-distribues/cours/9.6-le-temps-et-l-accord.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.6-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
+
+## Niveau 10 — SaaS
+
+L'application ne sert plus une tontine, mais des centaines
+d'associations qui s'inscrivent, paient leur offre et branchent leurs
+propres systèmes. Ce niveau apprend à tenir chaque association chez
+elle dans des tables partagées, à dire qui peut faire quoi dans quelle
+association, à facturer sans se tromper d'un franc, à empêcher un client
+de prendre la place des autres, à prouver qui a fait quoi, et à prévenir
+les systèmes des clients sans se laisser bloquer par eux. Les mesures
+tournent sur le PostgreSQL 17 du niveau 5, ou avec la bibliothèque
+standard seule.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 10.1 | [Le multi-tenancy : chaque association chez elle, dans les mêmes tables](10-saas/cours/10.1-le-multi-tenancy.md) | ✅ | [5 exercices](10-saas/exercices/10.1-exercices.md) | ⚪ à venir |
 
 ## Organisation du dépôt
 
