@@ -198,6 +198,7 @@ niveau 5.
 | 8.2 | [L'outbox transactionnelle : publier sans perdre ni inventer](08-messaging-evenements/cours/8.2-l-outbox.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.2-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 | 8.3 | [Au moins une fois : des abonnés qui supportent le doublon, le désordre et le message empoisonné](08-messaging-evenements/cours/8.3-au-moins-une-fois.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.3-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 | 8.4 | [La cohérence éventuelle : des vues en retard, et comment vivre avec](08-messaging-evenements/cours/8.4-la-coherence-eventuelle.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.4-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
+| 8.5 | [Les sagas : une action en plusieurs étapes, qui peut échouer au milieu](08-messaging-evenements/cours/8.5-les-sagas.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.5-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 
 ## Organisation du dépôt
 
