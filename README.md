@@ -214,6 +214,7 @@ la bibliothèque standard seule.
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
 | 9.1 | [La scalabilité : trouver le goulot avant d'ajouter des machines](09-systemes-distribues/cours/9.1-la-scalabilite.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.1-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
+| 9.2 | [La résilience : des délais, des tentatives qui n'aggravent pas la panne, et un coupe-circuit](09-systemes-distribues/cours/9.2-la-resilience.md) | ✅ | [5 exercices](09-systemes-distribues/exercices/9.2-exercices.md) | [5/5](09-systemes-distribues/corrections/) |
 
 ## Organisation du dépôt
 
