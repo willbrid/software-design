@@ -61,7 +61,7 @@ Les exercices sont gradués :
 | 5 | Données & backend | Modélisation, transactions, concurrence, caching | ✅ **complet** |
 | 6 | API & frontières | API design, contrats, idempotence, versioning, frontend | ✅ **complet** |
 | 7 | DDD & architectures applicatives | Hexagonale, Clean Architecture, modular monolith | ✅ **complet** |
-| 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | ⚪ à venir |
+| 8 | Messaging & event-driven | Découplage, cohérence éventuelle, sagas | 🟡 en cours |
 | 9 | Systèmes distribués | Scalabilité, résilience, observabilité, sécurité | ⚪ à venir |
 | 10 | SaaS | Multi-tenancy, RBAC, billing, quotas, audit, webhooks | ⚪ à venir |
 | 11 | Architecture avancée | System design guidé façon CTO | ⚪ à venir |
@@ -180,6 +180,21 @@ peuvent un jour devenir des services. Chaque architecture y est mesurée
 | 7.4 | [Clean Architecture et les couches : ce qu'elles protègent, ce qu'elles coûtent](07-ddd-architectures/cours/7.4-le-cout-des-couches.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.4-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 | 7.5 | [Le monolithe modulaire : des frontières tenues, dans un seul programme](07-ddd-architectures/cours/7.5-le-monolithe-modulaire.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.5-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
 | 7.6 | [Extraire un module en service : ce que coûte le réseau, et comment migrer sans sauter](07-ddd-architectures/cours/7.6-extraire-un-service.md) | ✅ | [5 exercices](07-ddd-architectures/exercices/7.6-exercices.md) | [5/5](07-ddd-architectures/corrections/) |
+
+## Niveau 8 — Messaging & event-driven
+
+Les modules ont des frontières (niveau 7) ; il faut maintenant qu'ils se
+préviennent sans s'attendre. Ce niveau apprend à distinguer un fait d'un
+ordre, à publier un événement sans le perdre ni l'inventer, à le
+recevoir deux fois sans dommage, à vivre avec des vues en retard, à
+mener une action en plusieurs étapes qui peut échouer au milieu, et à
+faire évoluer des événements déjà écrits. Le bus de la leçon 8.1 est en
+mémoire ; les suivantes s'appuient sur le même PostgreSQL 17 que le
+niveau 5.
+
+| Leçon | Sujet | Cours | Exercices | Corrections |
+|---|---|---|---|---|
+| 8.1 | [Commande ou événement : découpler par les messages](08-messaging-evenements/cours/8.1-commande-ou-evenement.md) | ✅ | [5 exercices](08-messaging-evenements/exercices/8.1-exercices.md) | [5/5](08-messaging-evenements/corrections/) |
 
 ## Organisation du dépôt
 
