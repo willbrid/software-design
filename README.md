@@ -234,7 +234,7 @@ standard seule.
 
 | Leçon | Sujet | Cours | Exercices | Corrections |
 |---|---|---|---|---|
-| 10.1 | [Le multi-tenancy : chaque association chez elle, dans les mêmes tables](10-saas/cours/10.1-le-multi-tenancy.md) | ✅ | [5 exercices](10-saas/exercices/10.1-exercices.md) | ⚪ à venir |
+| 10.1 | [Le multi-tenancy : chaque association chez elle, dans les mêmes tables](10-saas/cours/10.1-le-multi-tenancy.md) | ✅ | [5 exercices](10-saas/exercices/10.1-exercices.md) | [5/5](10-saas/corrections/) |
 
 ## Organisation du dépôt
 
